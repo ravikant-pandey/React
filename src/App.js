@@ -2,8 +2,12 @@ import Hello from "./first";
 
 function App() {
   return (
-    // <h1>React | with Ravikant Pandey</h1>
+    <>
+    <h2>React with Vite | Ravikant Pandey</h2>
     <Hello/>
+    <p><i>Test Para.</i></p>
+    <h1>Hello Universe</h1>
+    </>
   );
 }
-export default Hello;
+export default App;
