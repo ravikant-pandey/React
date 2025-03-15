@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { InputBox } from './components'
 import useCurrencyInfo from './hooks/useCurrencyInfo'
-import bgImage from "./assets/bg-image.webp"; // Import your local image
+import bgImage from "./assets/bg.jpg"; // Import your local image
 
 function App() {
 
@@ -58,7 +58,7 @@ function App() {
                         <div className="relative w-full h-0.5">
                             <button
                                 type="button"
-                                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5"
+                                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2 border-2 border-white rounded-md bg-blue-600 text-white px-2 py-0.5 cursor-pointer hover:bg-blue-700"
                                 onClick={swap} // Call swap function when clicked
                             >
                                 swap
@@ -74,7 +74,7 @@ function App() {
                                 amountDisable // Disable manual input for converted amount
                             />
                         </div>
-                        <button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg">
+                        <button type="submit" className="w-full bg-blue-600 text-white px-4 py-3 rounded-lg cursor-pointer hover:bg-blue-700">
                             Convert {from.toUpperCase()} to {to.toUpperCase()} {/* Display conversion button text dynamically */}
                         </button>
                     </form>
