@@ -5,6 +5,9 @@ import { FaBars, FaTimes } from "react-icons/fa"; // Import icons for hamburger 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Function to close the menu when clicking outside
+  const closeMenu = () => setMenuOpen(false);
+
   return (
     <nav className="w-full bg-gray-900 text-white p-4 shadow-md">
       <div className="container mx-auto flex justify-between items-center">
@@ -33,15 +36,21 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu (Improved with Full Screen & Smooth Animation) */}
       {menuOpen && (
-        <div className="md:hidden flex flex-col bg-gray-800 text-white space-y-4 p-4 absolute top-16 left-0 w-full shadow-md">
-          <NavLink to="/" className="hover:text-blue-400" onClick={() => setMenuOpen(false)}>Home</NavLink>
-          <NavLink to="/about-us" className="hover:text-blue-400" onClick={() => setMenuOpen(false)}>About</NavLink>
-          <NavLink to="/contact-us" className="hover:text-blue-400" onClick={() => setMenuOpen(false)}>Contact</NavLink>
-          <NavLink to="/faq" className="hover:text-blue-400" onClick={() => setMenuOpen(false)}>FAQ</NavLink>
-          <NavLink to="/privacy-policy" className="hover:text-blue-400" onClick={() => setMenuOpen(false)}>Privacy</NavLink>
-          <NavLink to="/terms-and-conditions" className="hover:text-blue-400" onClick={() => setMenuOpen(false)}>Terms</NavLink>
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-90 flex flex-col items-center justify-center text-white space-y-6 p-6 z-50 transform transition-transform duration-300 ease-in-out">
+          {/* Close Button (X) */}
+          <button onClick={closeMenu} className="absolute top-6 right-6 text-white">
+            <FaTimes size={30} />
+          </button>
+
+          {/* Navigation Links */}
+          <NavLink to="/" className="hover:text-blue-400 text-xl" onClick={closeMenu}>Home</NavLink>
+          <NavLink to="/about-us" className="hover:text-blue-400 text-xl" onClick={closeMenu}>About</NavLink>
+          <NavLink to="/contact-us" className="hover:text-blue-400 text-xl" onClick={closeMenu}>Contact</NavLink>
+          <NavLink to="/faq" className="hover:text-blue-400 text-xl" onClick={closeMenu}>FAQ</NavLink>
+          <NavLink to="/privacy-policy" className="hover:text-blue-400 text-xl" onClick={closeMenu}>Privacy</NavLink>
+          <NavLink to="/terms-and-conditions" className="hover:text-blue-400 text-xl" onClick={closeMenu}>Terms</NavLink>
         </div>
       )}
     </nav>
