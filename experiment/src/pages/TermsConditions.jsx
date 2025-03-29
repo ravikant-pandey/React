@@ -2,7 +2,7 @@ import React from "react";
 
 function TermsConditions() {
   return (
-    <div className="bg-blue-900 text-white min-h-screen flex flex-col items-center justify-center px-6 py-12">
+    <div className="text-white min-h-screen flex flex-col items-center justify-center px-6 py-12">
       <h2 className="text-3xl font-bold mb-4 text-blue-300 text-center">Terms & Conditions</h2>
       <p className="text-white text-lg text-center max-w-2xl">
         By using TheTechMind, you agree to the following terms and conditions. Please review them carefully.
@@ -96,7 +96,6 @@ function TermsConditions() {
         </div>
       </div>
     </div>
-
   );
 }
 
