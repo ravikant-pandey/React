@@ -5,16 +5,16 @@ function Footer() {
   return (
     <footer className="w-full bg-gray-900 text-white py-6 mt-10">
       <div className="container mx-auto max-w-7xl px-6 flex flex-col items-center md:items-start text-center md:text-left space-y-8 md:space-y-0 md:flex-row md:justify-between">
-        
+
         {/* Quick Links */}
         <div className="w-full md:w-1/3 flex flex-col items-center md:items-start space-y-3">
           <h3 className="text-lg font-semibold text-gray-200 hover:underline cursor-pointer">Quick Links</h3>
           <div className="flex flex-col space-y-2 text-gray-400">
-            <a href="/about-us" className="hover:text-blue-400">About Us</a>
-            <a href="/contact-us" className="hover:text-blue-400">Contact Us</a>
-            <a href="/faq" className="hover:text-blue-400">FAQ</a>
-            <a href="/privacy-policy" className="hover:text-blue-400">Privacy Policy</a>
-            <a href="/terms-and-conditions" className="hover:text-blue-400">Terms & Conditions</a>
+            <Link to="/about-us" className="hover:text-blue-400">About Us</Link>
+            <Link to="/contact-us" className="hover:text-blue-400">Contact Us</Link>
+            <Link to="/faq" className="hover:text-blue-400">FAQ</Link>
+            <Link to="/privacy-policy" className="hover:text-blue-400">Privacy Policy</Link>
+            <Link to="/terms-and-conditions" className="hover:text-blue-400">Terms & Conditions</Link>
           </div>
         </div>
 
