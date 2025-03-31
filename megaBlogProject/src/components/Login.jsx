@@ -71,8 +71,8 @@ function Login() {
                 required: true,
                 validate: {
                   matchPattern: (value) => {
-                    if (value.length < 6) {
-                      return 'Password must be at least 6 characters long';
+                    if (value.length < 8) {
+                      return 'Password must be at least 8 characters long';
                     }
                     if (!/[A-Z]/.test(value)) {
                       return 'Password must contain at least one uppercase letter';
