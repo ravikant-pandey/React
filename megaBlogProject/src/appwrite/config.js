@@ -2,14 +2,14 @@ import conf from "../conf/conf";
 import { Client, ID, Account, Databases, Storage, Query } from "appwrite";
 
 export class Service {
-    client = new Client
+    client = new Client()
     databases;
     bucket;
 
     constructor() {
         this.client
             .setEndpoint(conf.appwriteUrl) // Your API Endpoint
-            .setProject(conf.appwwriteProjectId); // Your project ID
+            .setProject(conf.appwriteProjectId); // Your project ID
         this.databases = new Databases(this.client);
         this.bucket = new Storage(this.client);
     }
@@ -110,10 +110,7 @@ export class Service {
     // Delete File Service
     async deleteFile(fileId) {
         try {
-            return await this.bucket.deleteFile(
-                conf.appwriteBucketId,
-                fileId,
-            )
+            await this.bucket.deleteFile(conf.appwriteBucketId, fileId);
             return true;
         } catch (error) {
             console.error("Error deleting post:", error);
