@@ -1,35 +1,35 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import authService from '../appwrite/auth'
-import { Link, useNavigate } from 'react-router-dom'
-import { login } from '../store/authSlice'
-import { Button, Input, Logo } from './index.js'
-import { useDispatch } from 'react-redux'
-import { useForm } from 'react-hook-form'
+import {Link ,useNavigate} from 'react-router-dom'
+import {login} from '../store/authSlice'
+import {Button, Input, Logo} from './index.js'
+import {useDispatch} from 'react-redux'
+import {useForm} from 'react-hook-form'
 
 function Signup() {
     const navigate = useNavigate()
-    const dispatch = useDispatch()
     const [error, setError] = useState("")
-    const { register, handleSubmit } = useForm()
+    const dispatch = useDispatch()
+    const {register, handleSubmit} = useForm()
 
-    const signup = async (data) => {
+    const create = async(data) => {
         setError("")
         try {
             const userData = await authService.createAccount(data)
             if (userData) {
                 const userData = await authService.getCurrentUser()
-                if (userData) dispatch(login(userData))
+                if(userData) dispatch(login(userData));
                 navigate("/")
             }
         } catch (error) {
-            console.log(error.message)
             setError(error.message)
         }
     }
-    return (
-        <div className='flex items-center justify-center'>
+
+  return (
+    <div className="flex items-center justify-center">
             <div className={`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
-                <div className='mb-2 flex justify-center'>
+            <div className="mb-2 flex justify-center">
                     <span className="inline-block w-full max-w-[100px]">
                         <Logo width="100%" />
                     </span>
@@ -45,66 +45,44 @@ function Signup() {
                     </Link>
                 </p>
                 {error && <p className="text-red-600 mt-8 text-center">{error}</p>}
-                <form onSubmit={handleSubmit(signup)}>
+
+                <form onSubmit={handleSubmit(create)}>
                     <div className='space-y-5'>
                         <Input
-                            label="Full Name: "
-                            placeholder="Enter your full name"
-                            {...register("name", {
-                                required: true,
-                                validate: (value) => value.trim() !== "" ||
-                                    "Username cannot be empty or only spaces"
-                            })}
+                        label="Full Name: "
+                        placeholder="Enter your full name"
+                        {...register("name", {
+                            required: true,
+                        })}
                         />
                         <Input
-                            label="Email: "
-                            placeholder="Enter your email"
-                            type="email"
-                            {...register("email", {
-                                required: true,
-                                validate: {
-                                    matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
-                                        "Email is not valid"
-                                }
-                            })}
+                        label="Email: "
+                        placeholder="Enter your email"
+                        type="email"
+                        {...register("email", {
+                            required: true,
+                            validate: {
+                                matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
+                                "Email address must be a valid address",
+                            }
+                        })}
                         />
                         <Input
-                            label='Password: '
-                            placeholder='Password'
-                            type='password'
-                            {...register("password", {
-                                required: true,
-                                validate: {
-                                    matchPattern: (value) => {
-                                        if (value.length < 8) {
-                                            return 'Password must be at least 8 characters long';
-                                        }
-                                        if (!/[A-Z]/.test(value)) {
-                                            return 'Password must contain at least one uppercase letter';
-                                        }
-                                        if (!/[a-z]/.test(value)) {
-                                            return 'Password must contain at least one lowercase letter';
-                                        }
-                                        if (!/[0-9]/.test(value)) {
-                                            return 'Password must contain at least one number';
-                                        }
-                                        if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
-                                            return 'Password must contain at least one special character';
-                                        }
-                                        return true; // Valid password
-                                    }
-                                }
-                            })}
+                        label="Password: "
+                        type="password"
+                        placeholder="Enter your password"
+                        {...register("password", {
+                            required: true,})}
                         />
-                        <Button
-                            type="submit"
-                            className="w-full"
-                        >Create Account</Button>
+                        <Button type="submit" className="w-full">
+                            Create Account
+                        </Button>
                     </div>
                 </form>
             </div>
-        </div>
-    )
+
+    </div>
+  )
 }
 
 export default Signup

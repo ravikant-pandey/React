@@ -56,21 +56,20 @@ export default function PostForm({ post }) {
                 .toLowerCase()
                 .replace(/[^a-zA-Z\d\s]+/g, "-")
                 .replace(/\s/g, "-");
-        return ''
-    }, [])
+
+        return "";
+    }, []);
+
     React.useEffect(() => {
         const subscription = watch((value, { name }) => {
-            if (name === 'title') {
-                setValue('slug', slugTransform(value.title, { shouldValidate: true })
-                )
+            if (name === "title") {
+                setValue("slug", slugTransform(value.title), { shouldValidate: true });
             }
+        });
 
-        })
+        return () => subscription.unsubscribe();
+    }, [watch, slugTransform, setValue]);
 
-        return () => {
-            subscription.unsubscribe()
-        }
-    }, [watch, slugTransform, setValue])
     return (
         <form onSubmit={handleSubmit(submit)} className="flex flex-wrap">
             <div className="w-2/3 px-2">
@@ -85,8 +84,8 @@ export default function PostForm({ post }) {
                     placeholder="Slug"
                     className="mb-4"
                     {...register("slug", { required: true })}
-                    onInput={(evt) => {
-                        setValue("slug", slugTransform(evt.currentTarget.value), { shouldValidate: true });
+                    onInput={(e) => {
+                        setValue("slug", slugTransform(e.currentTarget.value), { shouldValidate: true });
                     }}
                 />
                 <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
@@ -119,5 +118,5 @@ export default function PostForm({ post }) {
                 </Button>
             </div>
         </form>
-    )
+    );
 }
